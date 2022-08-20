@@ -13,7 +13,7 @@ for i in range(9):
     for j in range(i+1, 9):
         if arr[i]+arr[j] == total-100:
             u, v = arr[i], arr[j]
-arr.sort()
+arr.sort() # 오름차순 출력해야 한다.
 for i in arr:
     if i==u or i==v:
         continue
