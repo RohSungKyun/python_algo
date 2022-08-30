@@ -14,7 +14,7 @@ while heap:
     start, end = heapq.heappop(heap)
     if rooms:
         if min(rooms) <= start:
-            rooms[0] = end
+            rooms[rooms.index(min(rooms))] = end
             continue
     rooms.append(end)
     if len(rooms) > answer:

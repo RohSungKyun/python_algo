@@ -38,4 +38,4 @@ while True:
         break
     time+=1
 print(time)
-print(result[-2])
+print(result[-2]) # 녹기 한시간 전 결과 출력
