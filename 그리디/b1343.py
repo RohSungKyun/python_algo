@@ -5,7 +5,7 @@ st = read() # 보드판을 읽어온다.
 
 st = st.replace('XXXX', 'AAAA')
 st = st.replace('XX', 'BB')
-if "x" in st:
+if 'X' in st:
     print(-1)
 else:
     print(st)

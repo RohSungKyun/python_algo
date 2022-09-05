@@ -6,5 +6,3 @@ n = int(read())
 graph=[]
 for _ in range(n):
     graph.append(list(map(int, read().split())))
-
-print(graph)
