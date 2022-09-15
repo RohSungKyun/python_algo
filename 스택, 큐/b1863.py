@@ -18,7 +18,5 @@ for i in range(n):
         if stack[-1]<y:
             stack.append(y)
             cnt+=1
-            
-
 
 print(cnt)
