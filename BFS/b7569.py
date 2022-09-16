@@ -34,7 +34,7 @@ while queue:
         if 0<=nx<h and 0<=ny<n and 0<=nz<m and graph[nx][ny][nz]==0:
             queue.append([nx, ny, nz])
             graph[nx][ny][nz] = graph[x][y][z]+1 # day수 갱신을 위해 카운트
-print(graph)
+
 day=0
 for i in graph:
     for j in i:
@@ -42,7 +42,7 @@ for i in graph:
             if k==0:
                 print(-1)
                 exit()
-        day = max(day, max(j))
+        day = max(day, max(j)) # k가 아니라 max(j)로 수정
 
 print(day-1)
 
