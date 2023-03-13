@@ -6,6 +6,7 @@ read = sys.stdin.readline
 
 N, d, k, c = map(int, read().split())
 array = [0]*N
+
 for i in range(N):
     array[i] = int(read())
 
@@ -23,11 +24,11 @@ for i in range(N):
 
     if c not in tmp:
         count = len(set(tmp))+1
-        if count>MaxCount:
+        if count>=MaxCount:
             MaxCount = count
     else:
         count=len(set(tmp))
-        if count>MaxCount:
+        if count>=MaxCount:
             MaxCount = count
 
 print(MaxCount)
