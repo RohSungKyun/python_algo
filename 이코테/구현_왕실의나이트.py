@@ -8,7 +8,7 @@ read = sys.stdin.readline
 
 roc = read()
 row = int(roc[1])
-col = int(ord(roc[0])) - int(ord('a')) + 1
+col = int(ord(roc[0])) - 96
 method = [(-2, -1), (-1, -2), (2, -1), (-1, 2), (-2, 1), (1, -2), (1, 2), (2, 1)] # 8가지
 
 cnt = 0 
