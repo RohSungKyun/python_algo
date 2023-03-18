@@ -12,5 +12,10 @@ graph = [list(read().split()) for _ in range(m)]
 
 
 def turn_left(): # 방향을 체크하는 것이 필요함
-    if d == 0:
-        d = 3
+    global direction
+    direction-=1
+    if direction == -1:
+        direction = 3
+
+
+    
