@@ -9,13 +9,14 @@ read = sys.stdin.readline
 n, m =  map(int, read().split())
 x, y, direction = map(int, read().split())
 graph = [list(read().split()) for _ in range(n)]
-visit = [[0]*m for _ in range(n)]
+visit = [[False]*m for _ in range(n)]
 
 dx = [-1, 0, 1, 0]
-dy = [0, -1, 0, 1]
+dy = [0, 1, 0, -1]
 
 def turn_left(): # 방향체크 왼쪽 회전 함수
     global direction
+    print('회전')
     direction-=1
     if direction == -1:
         direction = 3
@@ -24,13 +25,17 @@ ans = 1
 turn_time =0
 while True:
     turn_left()
-    nx, ny = x+dx[direction], y+dy[direction]
+    nx = x + dx[direction]
+    ny = y + dy[direction]
 
-    if graph[nx][ny]==0 and visit[nx][ny]==0:
+    if graph[nx][ny]=='0' and not visit[nx][ny]: # 오답노트 : 배열에 저장된 숫자는 문자열로 저장된다.
+        print(graph[nx][ny], visit[nx][ny])
+        print('방문x, 육지인 경우')
         ans+=1
-        visit[nx][ny]=1
+        visit[nx][ny]=True
         x = nx
         y = ny
+        turn_time = 0 # 오답노트 : 이동했을 경우 다시 초기화 하는 과정필요
         continue
     else:
         turn_time+=1
@@ -38,7 +43,7 @@ while True:
     if turn_time==4:
         nx = x-dx[direction]
         ny = y-dy[direction]
-        if graph[nx][ny]==0:
+        if graph[nx][ny]=='0':
             x = nx
             y = ny
         else:
