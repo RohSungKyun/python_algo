@@ -10,7 +10,7 @@ visit = [False]*(n+1)
 for i in range(m):
     u, v = map(int, read().split())
     graph[u].append(v)
-    graph[v].append(u) # 방향이 없으므로 양방향으로 저장(그래프에 연결관계가 포함되도록 저장)
+    graph[v].append(u) # 방향이 없으므로 양방향으로 저장(그래프에 연결관계가 포함되도록 저장) 노드의 형태로 연결됨
 
 def dfs(start): # 연결 요소를 도는 dfs
     visit[start] = True

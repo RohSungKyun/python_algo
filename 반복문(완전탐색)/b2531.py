@@ -12,24 +12,23 @@ for i in range(N):
 
 MaxCount = 0
 for i in range(N):  
-    tmp = [0]*k 
+    tmp = set()
     index=i  
     for j in range(k):
         if index > N-1: # 인덱스 초과
-            tmp[j] = array[index%N-1]
+            tmp.add(array[index%N-1])
             index+=1
         else:
-            tmp[j] = array[index]
+            tmp.add(array[index])
             index+=1
 
     if c not in tmp:
         count = len(set(tmp))+1
-        if count>=MaxCount:
+        if count>MaxCount:
             MaxCount = count
     else:
         count=len(set(tmp))
-        if count>=MaxCount:
+        if count>MaxCount:
             MaxCount = count
-
 print(MaxCount)
     
