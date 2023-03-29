@@ -1,3 +1,4 @@
+
 import sys
 
 read = sys.stdin.readline
@@ -12,4 +13,4 @@ for i in range(2, x-1):
     if i%5 == 0:
         dp[i] = min(dp[i], dp[i//5]+1)
 
-print(dp[x])
+print(dp[x]) # 3 - 30
