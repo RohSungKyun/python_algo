@@ -16,9 +16,11 @@ for i in range(n):
 dp = [0]*16
 
 
-for i in range(1, n+1):
-    for j in range(i+arr[i][0], n+1):
-        if j < n:
-            dp[j] = 
+for i in range(n): # 일 수
+    for j in range(i+arr[i][0], n+1): # 현재 ~ 상담종료일
+        if dp[j] < dp[i] + arr[i][1]:
+            dp[j] = dp[i] + arr[i][1]
+
+print(dp[-1])
 
 
