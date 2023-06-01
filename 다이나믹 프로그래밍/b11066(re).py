@@ -18,5 +18,5 @@ for _ in range(t):
     
     for i in range(2, k+1): # 합치는 파일의 길이
         for j in range(1, k+2-i): # 구간합의 시작점
-            dp[j][j]
+            dp[j][j+i-1] = min(dp[j][j+k] + dp[j+k+1][j+i-1] for k in range(i-1))
     
