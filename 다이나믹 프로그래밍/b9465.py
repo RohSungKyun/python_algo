@@ -10,7 +10,7 @@ for _ in range(t):
     arr = [list(map(int, read().split())) for _ in range(2)]
 
 
-    
+    # Need to make exceptions when length is 1 and 2
     # If the length is 1
     dp[0][0] = arr[0][0]
     dp[1][0] = arr[1][0]
