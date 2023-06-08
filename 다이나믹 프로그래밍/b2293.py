@@ -1,6 +1,5 @@
 # 동전의 가치의 합이 k가 되도록 하는 모든 경우의 수
 # 동전의 재사용 가능
-# 
 
 import sys
 read = sys.stdin.readline
