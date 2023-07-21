@@ -18,19 +18,27 @@ def bfs(a, b):
     queue = deque()
     queue.append([a, b])
     visited[a][b] = True
+    global area
     while queue:
         x, y = queue.popleft()
         for i in range(4):
             nx, ny = x+dx[i], y+dy[i]
             if 0<=nx<n and 0<=ny<m and graph[nx][ny] == 1 and visited[nx][ny] == False:
-                 queue.append([nx, ny])
-                 visited[nx][ny] = True
+                queue.append([nx, ny])
+                visited[nx][ny] = True
+                area+=1
+    print(area)
 cnt = 0
-
+area=0
+max_area = 0
 for i in range(n):
     for j in range(m):
         if graph[i][j] == 1 and visited[i][j] == False:
             bfs(i, j)
             cnt+=1
+            if max_area < area:
+                max_area = area
+                area = 1 # 초기화
 
 print(cnt)
+print(max_area)
