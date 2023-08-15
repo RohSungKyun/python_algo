@@ -9,8 +9,48 @@ import sys
 read = sys.stdin.readline
 
 n, m = map(int, read().split())
-a, b, d = map(int, read().split())
-dx, dy = [1, 0, -1, 0], [0, 1, 0, -1]
+r, c, d = map(int, read().split())
+# 0 : 북, 1 : 동, 2 : 남, 3 : 서
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
 graph = []
+for i in range(n):
+    graph.append(list(map(int, read().split())))
+
 visited = [[False]*m for _ in range(n)]
 
+def turn_left():
+    if d == 0:
+        d = 3
+
+    if d == 1:
+        d = 0
+
+    if d == 2:
+        d = 1
+        
+    if d == 3:
+        d = 2
+
+def bfs():
+    global cnt
+    queue = deque()
+    queue.append((r, c))
+    visited[r][c] = True
+    cnt = 1
+
+    while queue:
+        x, y = queue.popleft()
+
+        for i in range(4):
+            nx, ny = x+dx[i], y+dy[i]
+
+            if 0<=nx<m and 0<=ny<n and graph[nx][ny]==0 and not visited[nx][ny]:
+                turn_left()
+                cnt+=1
+                visited[nx][ny] = True
+                queue.append((nx, ny))
+
+            elif 0<=nx<m and 0<=ny<n and graph[nx][ny]==1 and not visited[nx][ny]:
+                turn_left()
