@@ -19,22 +19,12 @@ for i in range(n):
     graph.append(list(map(int, read().split())))
 
 visited = [[False]*m for _ in range(n)]
-
-def turn_left():
-    if d == 0:
-        d = 3
-
-    if d == 1:
-        d = 0
-
-    if d == 2:
-        d = 1
-        
-    if d == 3:
-        d = 2
+flag = 0
 
 def bfs():
     global cnt
+    global d
+    global flag
     queue = deque()
     queue.append((r, c))
     visited[r][c] = True
@@ -44,13 +34,22 @@ def bfs():
         x, y = queue.popleft()
 
         for i in range(4):
-            nx, ny = x+dx[i], y+dy[i]
+            d = (d-1)%4 # 1씩 감소시켜 반시계 방향으로 탐색
+            nx, ny = x+dx[d], y+dy[d]
 
-            if 0<=nx<m and 0<=ny<n and graph[nx][ny]==0 and not visited[nx][ny]:
-                turn_left()
+            if graph[nx][ny]==0 and not visited[nx][ny]: # 어차피 벽이 1로 둘러싸여 0<=nx<m and 0<=ny<n 로 범위 제한을 두면 오류가 뜬다.
                 cnt+=1
                 visited[nx][ny] = True
                 queue.append((nx, ny))
+                break
 
-            elif 0<=nx<m and 0<=ny<n and graph[nx][ny]==1 and not visited[nx][ny]:
-                turn_left()
+            if i == 3: # 모든 방향을 탐색한 경우
+                nx, ny = x-dx[d], y-dy[d] # 방향을 유지한 채 후진
+                if graph[nx][ny] == 1:
+                    flag = 1
+                else:
+                    queue.append((nx, ny))
+        if flag:
+            break
+bfs()
+print(cnt)
