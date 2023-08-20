@@ -11,7 +11,6 @@ for _ in range(t):
     dp[0] = dp[1] = dp[2] = 1
     dp[3] = dp[4] = 2
     if n < 6:
-        print(dp)
         print(dp[n-1])
     else:
         for i in range(4, n):

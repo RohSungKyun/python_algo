@@ -18,7 +18,7 @@ dp = [0]*(n+1)
 # bottom-up 방식
 for i in range(n):
     for j in  range(i+arr[i][0], n+1):
-        if dp[j] < dp[i] + arr[i][1]:
+        if dp[j] < dp[i] + arr[i][1]: # 최대 이익을 저장
             dp[j] = dp[i] + arr[i][1]
 
 print(dp[-1])"""
@@ -32,4 +32,3 @@ for i in range(n-1, -1, -1):
         dp[i] = max(dp[i+1], arr[i][1] + dp[i+arr[i][0]])
 
 print(dp[0])
-print(dp)

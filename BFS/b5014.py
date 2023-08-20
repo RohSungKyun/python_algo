@@ -10,14 +10,17 @@ def bfs():
     queue = deque()
     queue.append((s))
     visited[s] = 1
+
     while queue:
         tmp = queue.popleft()
-        for i in [tmp-d, tmp+u]:
-            if 0<=i<f and not visited[i]:
+        for i in [tmp+u, tmp-d]:
+            if 1<=i<=f and not visited[i]:
                 visited[i] = visited[tmp]+1
                 queue.append((i))
+    
 
 bfs()
+
 if visited[g]:
     print(visited[g]-1)
 else:
