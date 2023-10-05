@@ -5,10 +5,34 @@
 # m<=치킨집개수 <=13
 
 import sys
+from itertools import combinations
 read = sys.stdin.readline
 n, m = map(int, read().split())
 graph = []
+house = []
+chick = []
+result = sys.maxsize
+
 for _ in range(n):
     tmp = list(map(int, read().split()))
     graph.append(tmp)
 
+
+
+for i in range(n):
+    for j in range(n):
+        if graph[i][j] == 1:
+            house.append([i, j])
+        if graph[i][j] == 2:
+            chick.append([i, j])
+
+for c in combinations(chick, m):
+    tmp = 0
+    for h in house:
+        chick_length = sys.maxsize
+        for j in range(m):
+            chick_length = min(chick_length, abs(h[0]-c[j][0])+abs(h[1]-c[j][1]))
+        tmp += chick_length
+    result = min(result, tmp)
+
+print(result)
