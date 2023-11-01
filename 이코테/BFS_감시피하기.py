@@ -28,6 +28,7 @@ def watch(x, y, direction):
             if graph[x][y]=='O':
                 return False
             y-=1
+            
     # 오른쪽 방향으로 감시
     if direction==1:
         while y<n:
@@ -35,7 +36,8 @@ def watch(x, y, direction):
                 return True   
             if graph[x][y]=='O':
                 return False
-        y+=1
+            y+=1
+        
     # 위쪽 방향으로 감시
     if direction==2:
         while x>=0:
@@ -43,7 +45,7 @@ def watch(x, y, direction):
                 return True   
             if graph[x][y]=='O':
                 return False
-        x-=1
+            x-=1
     # 아래쪽 방향으로 감시
     if direction==3:
         while x<n:
@@ -51,7 +53,7 @@ def watch(x, y, direction):
                 return True   
             if graph[x][y]=='O':
                 return False
-        x+=1
+            x+=1
     return False
 
 # 장애물 설치후 학생감지 함수
