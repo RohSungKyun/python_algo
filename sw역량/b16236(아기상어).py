@@ -45,7 +45,7 @@ def find_fish(x, y): # 물고기의 거리를 기록
         if not find_fish:
             dist+=1
         else:
-            return sorted(find_fish), dist
+            return sorted(find_fish), dist # 함수 배열 정렬 문제
     return find_fish, 0 # 아무데도 갈 수 없을 때.
 # ========================================
 
