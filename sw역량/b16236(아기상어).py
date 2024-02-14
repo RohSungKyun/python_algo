@@ -18,18 +18,21 @@ for i in range(n):
     tmp = list(map(int, read().split()))
     graph.append(tmp)
     for j in range(n):
-        if graph[i][j] == '9': # 물고기 위치 기록
-            visited[i][j] = 1
+        if graph[i][j] == 9: # 아기 상어 위치 기록
             sx = i
             sy = j
-        elif graph[i][j] != '0': # 해당 칸에 물고기가 존재, 리스트에 추가
-            fishlst.append([i, j])
+        elif graph[i][j] != 0: # 해당 칸에 물고기가 존재, 리스트에 추가
+            fishlst.append((i, j))
 
-def find_fish(x, y): # 물고기의 거리를 기록
+
+
+def baby_shark(x, y): # 물고기의 거리를 기록
     queue = deque()
     queue.append((x, y))
+    visited[x][y] = 0
     dx, dy = [0, 1, -1, 0], [1, 0, 0, -1]
     dist = 1
+    eat_fish = []
 
     while queue:
         a, b = queue.popleft()
@@ -38,22 +41,23 @@ def find_fish(x, y): # 물고기의 거리를 기록
             if 0<=nx<n and 0<=ny<n and size >= graph[nx][ny] and visited[nx][ny] == -1: # 이동할 수 있는 곳이라면
                 visited[nx][ny] = dist
                 if graph[nx][ny] < size and (nx, ny) in fishlst:
-                    find_fish.append((nx, ny))
+                    eat_fish.append((nx, ny))
                 else:
                     queue.append((nx, ny))
         
-        if not find_fish:
+        if not eat_fish:
             dist+=1
         else:
-            return sorted(find_fish), dist # 함수 배열 정렬 문제
-    return find_fish, 0 # 아무데도 갈 수 없을 때.
+            return sorted(eat_fish), dist # 함수 배열 정렬 문제
+    return eat_fish, 0 # 아무데도 갈 수 없을 때.
 # ========================================
 
 def solve():
     global sx, sy, size
     size, cnt, time = 2, 0, 0 # 크기, 먹은 물고기의 수, 시간
     while True:
-        tmp, distance = find_fish(sx, sy) # 상어의 위치와 거리를 받아온다.
+        tmp, distance = baby_shark(sx, sy) # 상어의 위치와 거리를 받아온다.
+        
 
         if tmp: # 가장 위 왼쪽 물고기 부터 -> 위 함수에서 정렬이면 해결
             graph[sx][sy] = 0
@@ -61,7 +65,7 @@ def solve():
             time += distance
             cnt+=1
             fishlst.remove((sx, sy)) # 물고기를 먹었으므로 삭제
-            arr[sx][st] = 9 # 위치 갱신
+            graph[sx][sy] = 9 # 위치 갱신
 
             if cnt == size:
                 size +=1   
@@ -71,4 +75,5 @@ def solve():
             return time
 
 print(solve())
+
 
