@@ -24,7 +24,8 @@ for i in range(n):
         elif graph[i][j] != 0: # 해당 칸에 물고기가 존재, 리스트에 추가
             fishlst.append((i, j))
 
-
+print('shark location : ', sx, sy)
+print('fishlst:\n', fishlst)
 
 def baby_shark(x, y): # 물고기의 거리를 기록
     queue = deque()
